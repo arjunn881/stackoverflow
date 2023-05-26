@@ -1,7 +1,16 @@
 import React from 'react'
+import { Leftbar } from '../../components/leftbar/Leftbar'
+import { HomeMain } from '../../components/homemain/HomeMain'
+import { Rightbar } from '../../components/rightbar/Rightbar'
 
 export const Home = () => {
   return (
-    <div>Home</div>
+    <div className="home-container-1">
+      <Leftbar/>
+      <div className="home-container-2">
+      <HomeMain/>
+      <Rightbar/>
+      </div>
+    </div>
   )
 }

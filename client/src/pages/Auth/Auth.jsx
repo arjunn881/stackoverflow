@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Auth/Auth.css";
+import { AboutAuth } from "./AboutAuth";
 
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
@@ -10,6 +11,7 @@ export const Auth = () => {
 
   return (
     <div className="auth-section">
+      {isSignup && <AboutAuth/>}
       <div className="auth-container">
         {!isSignup && (
           <img
@@ -32,7 +34,7 @@ export const Auth = () => {
           <label htmlFor="password">
             <div>
               <h4>Password</h4>
-              {!isSignup && <h4>Forgot Password</h4>}
+              {!isSignup && <p style={{ color: "#007ac6", fontSize:"13px" }}>Forgot Password</p>}
             </div>
             <input type="password" name="password" />
             {isSignup && (
