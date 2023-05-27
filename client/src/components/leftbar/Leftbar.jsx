@@ -1,7 +1,7 @@
 import React from "react";
 import "../leftbar/Leftbar.css";
 import { NavLink } from "react-router-dom";
-
+import Globe from '../../asset/Globe.svg';
 export const Leftbar = () => {
   return (
     <div className="left-sidebar">
@@ -19,7 +19,7 @@ export const Leftbar = () => {
             activeClassName="active"
             style={{ paddingLeft: "40px" }}
           >
-            <img src="" alt="" />
+            <img src={Globe} alt="" />
             <p>Questions</p>
           </NavLink>
           <NavLink
