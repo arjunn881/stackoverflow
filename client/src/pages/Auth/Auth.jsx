@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Auth/Auth.css";
-import { AboutAuth } from "./AboutAuth";
+import { AboutAuth } from "./AboutAuth.jsx";
 
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);

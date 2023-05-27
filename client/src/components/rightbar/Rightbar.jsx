@@ -1,7 +1,15 @@
 import React from 'react'
+import '../rightbar/Rightbar.css';
+import { Widget } from './Widget';
+import { WidgetTags } from './WidgetTags';
+
+
 
 export const Rightbar = () => {
   return (
-    <div>Rightbar</div>
+    <aside>
+      <Widget/>
+      <WidgetTags/>
+    </aside>
   )
 }
