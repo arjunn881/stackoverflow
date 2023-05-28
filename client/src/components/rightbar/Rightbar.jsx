@@ -7,7 +7,7 @@ import { WidgetTags } from './WidgetTags';
 
 export const Rightbar = () => {
   return (
-    <aside>
+    <aside className='right-sidebar'>
       <Widget/>
       <WidgetTags/>
     </aside>
