@@ -25,6 +25,9 @@
     font-size: 13px;
     padding: 3px 0px;
   }
+  input, textarea{
+    border-radius: 3px;
+  }
   .ask-form-container label input,
   .ask-form-container label textarea {
     padding: 10px;
