@@ -1,11 +1,13 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../homemain/HomeMain.css";
-import { Questions } from "./Questions";
 import { QuestionList } from "./QuestionList";
 
 export const HomeMain = () => {
-    var questionsList = [
+  const user = 1;
+  const location = useLocation();
+  const navigate = useNavigate();
+  var questionsList = [
     {
       _id: 1,
       upVotes: 3,
@@ -67,7 +69,16 @@ export const HomeMain = () => {
       ],
     },
   ];
-  const location = useLocation();
+
+  const redirect = () => {
+    navigate("/Auth");
+  };
+
+  const checkAuth = () => {
+    if (user === null) {
+      redirect();
+    } else navigate("/AskQuestion");
+  };
   return (
     <div className="main-bar">
       <div className="main-bar-header">
@@ -77,9 +88,9 @@ export const HomeMain = () => {
           <h1>All Questions</h1>
         )}
 
-        <Link to="/AskQuestion" className="ask-btn">
+        <button className="ask-btn" onClick={checkAuth}>
           Ask Question
-        </Link>
+        </button>
       </div>
       <div className="">
         {questionsList === null ? (
@@ -87,7 +98,7 @@ export const HomeMain = () => {
         ) : (
           <>
             <p>{questionsList.length} Questions</p>
-            <QuestionList questionsList={questionsList}/>
+            <QuestionList questionsList={questionsList} />
           </>
         )}
       </div>

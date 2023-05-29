@@ -12,7 +12,7 @@ export const Auth = () => {
   return (
     <div className="auth-section">
       {isSignup && <AboutAuth/>}
-      <div className="auth-container">
+      <div className="auth-container-2">
         {!isSignup && (
           <img
             src="https://www.vectorlogo.zone/logos/stackoverflow/stackoverflow-icon.svg"
