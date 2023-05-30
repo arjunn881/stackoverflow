@@ -9,7 +9,7 @@ export const HomeMain = () => {
   const navigate = useNavigate();
   var questionsList = [
     {
-      _id: 1,
+      _id: "1",
       upVotes: 3,
       downVotes: 2,
       noOfAnswers: 2,
@@ -29,7 +29,7 @@ export const HomeMain = () => {
       ],
     },
     {
-      _id: 2,
+      _id: "2",
       upVotes: 3,
       downVotes: 2,
       noOfAnswers: 0,
@@ -49,7 +49,7 @@ export const HomeMain = () => {
       ],
     },
     {
-      _id: 3,
+      _id: "3",
       upVotes: 3,
       downVotes: 2,
       noOfAnswers: 0,

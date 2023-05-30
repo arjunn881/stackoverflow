@@ -15,7 +15,7 @@ export const Questions = ({ question }) => {
       </div>
       <div className="display-question-details">
         <Link
-          to={`/Questions/{${question._id}}`}
+          to={`/Questions/${question._id}`}
           className="question-title-link"
         >
           {question.questionTitle}

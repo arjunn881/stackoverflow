@@ -11,7 +11,7 @@ export const Auth = () => {
 
   return (
     <div className="auth-section">
-      {isSignup && <AboutAuth/>}
+      {isSignup && <AboutAuth />}
       <div className="auth-container-2">
         {!isSignup && (
           <img
@@ -34,7 +34,11 @@ export const Auth = () => {
           <label htmlFor="password">
             <div>
               <h4>Password</h4>
-              {!isSignup && <p style={{ color: "#007ac6", fontSize:"13px" }}>Forgot Password</p>}
+              {!isSignup && (
+                <p style={{ color: "#007ac6", fontSize: "13px" }}>
+                  Forgot Password
+                </p>
+              )}
             </div>
             <input type="password" name="password" />
             {isSignup && (
@@ -60,12 +64,15 @@ export const Auth = () => {
           </button>
           {isSignup && (
             <p style={{ color: "#666767", fontSize: "13px" }}>
-              By clicking "Signup", you are agree to our  
+              By clicking "Signup", you are agree to our{" "}
               <span style={{ color: "#007ac6" }}>
-                 terms of
+                terms of
                 <br /> service
               </span>
-              ,<span style={{ color: "#007ac6" }}>privacy policy</span> and
+              ,<span style={{ color: "#007ac6" }}>
+                {" "}
+                privacy policy{" "}
+              </span> and{" "}
               <span style={{ color: "#007ac6" }}>cookie policy</span>.
             </p>
           )}
