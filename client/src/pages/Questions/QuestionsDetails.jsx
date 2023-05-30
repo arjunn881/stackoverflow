@@ -1,7 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import upvotes from "../../asset/sort-up.svg";
 import downvotes from "../../asset/sort-down.svg";
+import "../Questions/Questions.css";
+import { Avatar } from "../../components/avatar/Avatar";
+import { DisplayAnswer } from "./DisplayAnswer";
 
 var questionsList = [
   {
@@ -74,15 +77,85 @@ export const QuestionsDetails = () => {
       {questionsList === null ? (
         <h1>Loading...</h1>
       ) : (
-        <>
-          {questionsList
-            .filter((question) => question._id === id)
-            .map((question) => (
-              <div className="" key={question._id}>
+        <div>
+          {questionsList.map((question) => (
+            <div className="" key={question._id}>
+              <section className="question-details-container">
                 <h1>{question.questionTitle}</h1>
-              </div>
-            ))}
-        </>
+                <div className="question-details-container-2">
+                  <div className="question-votes">
+                    <img src={upvotes} alt="" width="18" />
+                    <p>{question.upVotes - question.downVotes}</p>
+                    <img src={downvotes} alt="" width="18" />
+                  </div>
+                  <div style={{ width: "100%" }}>
+                    <p className="question-body">{question.questionBody}</p>
+                    <div className="question-details-tags">
+                      {question.questionTags.map((tag) => (
+                        <p key={tag}>{tag}</p>
+                      ))}
+                    </div>
+                    <div className="question-action-user">
+                      <div>
+                        <button type="button">Share</button>
+                        <button type="button">Delete</button>
+                      </div>
+                      <div className="">
+                        <p>asked {question.askedOn}</p>
+                        <Link
+                          to={`/User/${question.userId}`}
+                          className="user-link"
+                          style={{ color: "#0086d8" }}
+                        >
+                          <Avatar backgroundColor="orange" px="8px" py="5px">
+                            {question.userPosted.charAt(0).toUpperCase()}
+                            <div className="">{question.userPosted}</div>
+                          </Avatar>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              {question.noOfAnswers !== 0 && (
+                <section>
+                  <h3>{question.noOfAnswers}</h3>
+                  <DisplayAnswer key={question._id} question={question} />
+                </section>
+              )}
+              <section className="post-ans-container">
+                <h3 className="">Your Answer</h3>
+                <form>
+                  <textarea name="" id="" cols="30" rows="10"></textarea>
+                  <br />
+                  <input
+                    type="submit"
+                    className="post-ans-btn"
+                    value="Post Your Answer"
+                  />
+                </form>
+              </section>
+
+              <p>
+                Browse other Question tagged..
+                {question.questionTags.map((tag) => (
+                  <Link to="/Tags" key={tag} className="ans-tags">
+                    {tag}
+                  </Link>
+                ))}
+                or
+                {
+                  <Link
+                    to="/AskQuestion"
+                    style={{ textDecoration: "none", color: "#009dff" }}
+                  >
+                    Ask your own question!
+                  </Link>
+                }
+              </p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
