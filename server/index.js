@@ -1,13 +1,27 @@
-import express from 'express';
+import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { Jwt } from 'jsonwebtoken';
+import cors from "cors";
+
+import userRoutes from './routes/users.js'
 
 const app = express();
 
-
+app.use(express.json({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
 dotenv.config();
+
+app.get("/", (req, res) => {
+  res.send("This is Stackoverflow Clone API....");
+});
+
+app.use('/user', userRoutes);
+
+
+
+const PORT = process.env.PORT || 5000;
 
 const connect = async () => {
   await mongoose
@@ -16,13 +30,10 @@ const connect = async () => {
       console.log("connected to DB");
     })
     .catch((err) => {
-      throw err;
+      
+      console.log(err.message)
     });
 };
-
-
-
-app.use(express.json());
 
 app.use((err, req, res, next) => {
   const status = err.status || 500;
@@ -34,7 +45,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(8800, () => {
+app.listen(PORT, () => {
   connect();
-  console.log("server connected");
+  console.log(`server running on ${PORT}`);
 });
