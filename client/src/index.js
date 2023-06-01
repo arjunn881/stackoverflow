@@ -5,8 +5,9 @@ import App from './App';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk'
 import { configureStore } from '@reduxjs/toolkit';
+import Reducers from './reducers';
 
-const store = configureStore({ Reducers, middleware: [thunk] });
+const store = configureStore({ reducer: Reducers, middleware: [thunk] });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,3 +17,4 @@ root.render(
     </React.StrictMode>
   </Provider>
 );
+
