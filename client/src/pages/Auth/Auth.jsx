@@ -4,10 +4,24 @@ import { AboutAuth } from "./AboutAuth.jsx";
 
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
-
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
   const handleSwitch = () => {
     setIsSignup(!isSignup);
   };
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    if(!email || !password){
+      alert("Enter email & password!!!!");
+    }
+    if(isSignup){
+      if(!name){
+        alert("Enter Name to Continue!!!!");
+      }
+    }
+  }
 
   return (
     <div className="auth-section">
@@ -20,16 +34,16 @@ export const Auth = () => {
             className="login-logo"
           />
         )}
-        <form>
+        <form onSubmit={handleSubmit}>
           {isSignup && (
             <label htmlFor="name">
               <h4>Display Name</h4>
-              <input type="text" id="name" name="name" />
+              <input type="text" id="name" name="name"  onChange={(e)=>{setName(e.target.value)}}/>
             </label>
           )}
           <label htmlFor="email">
             <h4>Email</h4>
-            <input type="email" name="email" />
+            <input type="email" name="email" onChange={(e)=>{setEmail(e.target.value)}} />
           </label>
           <label htmlFor="password">
             <div>
@@ -40,7 +54,7 @@ export const Auth = () => {
                 </p>
               )}
             </div>
-            <input type="password" name="password" />
+            <input type="password" name="password" onChange={(e)=>{setPassword(e.target.value)}}/>
             {isSignup && (
               <p>
                 Password must containt at least 8 <br /> characters!, including
