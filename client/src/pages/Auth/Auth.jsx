@@ -1,12 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "../Auth/Auth.css";
 import { AboutAuth } from "./AboutAuth.jsx";
+import { signup, login } from "../../actions/auth";
 
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   
   const handleSwitch = () => {
     setIsSignup(!isSignup);
@@ -20,6 +27,9 @@ export const Auth = () => {
       if(!name){
         alert("Enter Name to Continue!!!!");
       }
+      signup({name, email, password});
+    } else{
+      login({email, password});
     }
   }
 
