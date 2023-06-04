@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "../avatar/Avatar";
 import "../navbar/Navbar.css";
 export const Navbar = () => {
-  var User = 123;
+  var User = null;
   return (
     <nav>
       <div className="navbar">
