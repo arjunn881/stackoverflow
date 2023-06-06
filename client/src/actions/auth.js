@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from '../api/index.js';
 import { setCurrentUser } from './currentUser';
 
 export const signup = (authData, navigate)=>async(dispatch)=>{

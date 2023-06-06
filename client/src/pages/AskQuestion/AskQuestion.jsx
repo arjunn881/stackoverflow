@@ -1,28 +1,38 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../../pages/AskQuestion/AskQuestion.css";
+import { askQuestion } from "../../actions/question.js";
 
 export const AskQuestion = () => {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionBody, setQuestionBody] = useState("");
   const [questionTags, setQuestionTags] = useState("");
 
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const User = useSelector((state)=>{})
-  const handleSubmit = (e)=>{
+  const User = useSelector((state) => state.currentUserReducer);
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({questionTitle,questionBody,questionTags});
-    dispatch();
-  }
+    console.log({ questionTitle, questionBody, questionTags });
+    dispatch(
+      askQuestion(
+        {
+          questionTitle,
+          questionBody,
+          questionTags,
+          userPosted: User.result.name,
+        },
+        navigate
+      )
+    );
+  };
 
-  const handleEnter =(e)=>{
-    if(e.key === 'Enter'){
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
       setQuestionBody(questionBody + "\n");
     }
-  }
+  };
 
   return (
     <div className="ask-question">
