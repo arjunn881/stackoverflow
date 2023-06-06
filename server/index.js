@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/user', userRoutes);
-app.use('/questtions', questionRoutes);
+app.use('/questions', questionRoutes);
 
 
 
