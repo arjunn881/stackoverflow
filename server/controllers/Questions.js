@@ -17,3 +17,13 @@ export const AskQuestion = async(req,res)=>{
     }
 }
 
+
+export const gettAllQuestions = async(req,res)=>{
+    try {
+        const questionList = await Questions.find();
+        res.status(200).json(questionList);
+        console.log(questionList);
+    } catch (error) {
+        res.status(409).json({message : error.message});
+    }
+}
