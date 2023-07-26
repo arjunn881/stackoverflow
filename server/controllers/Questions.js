@@ -24,6 +24,6 @@ export const getAllQuestions = async(req,res)=>{
         res.status(200).json(questionList);
         
     } catch (error) {
-        res.status(409).json({message : error.message});
+        res.status(404).json({message : error.message});
     }
 }

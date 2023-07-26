@@ -5,80 +5,90 @@ import downvotes from "../../asset/sort-down.svg";
 import "../Questions/Questions.css";
 import { Avatar } from "../../components/avatar/Avatar";
 import { DisplayAnswer } from "./DisplayAnswer";
+import { useSelector } from "react-redux";
 
-var questionsList = [
-  {
-    _id: "1",
-    upVotes: 3,
-    downVotes: 2,
-    noOfAnswers: 2,
-    questionTitle: "What is a function?",
-    questionBody: "It meant to be",
-    questionTags: ["java", "node js", "react js", "mongo db", "express js"],
-    userPosted: "Arjun",
-    userId: 1,
-    askedOn: "jan 1",
-    answer: [
-      {
-        answerBody: "Answer",
-        userAnswered: "Nayak",
-        answeredOn: "jan 2",
-        userId: 2,
-      },
-    ],
-  },
-  {
-    _id: "2",
-    upVotes: 3,
-    downVotes: 2,
-    noOfAnswers: 1,
-    questionTitle: "What is a function?",
-    questionBody: "It meant to be",
-    questionTags: ["javascript", "R", "python"],
-    userPosted: "Arjun",
-    askedOn: "jan 1",
-    userId: 1,
-    answer: [
-      {
-        answerBody: "Answer",
-        userAnswered: "Nayak",
-        answeredOn: "jan 2",
-        userId: 2,
-      },
-    ],
-  },
-  {
-    _id: "3",
-    upVotes: 3,
-    downVotes: 2,
-    noOfAnswers: 2,
-    questionTitle: "What is a function?",
-    questionBody: "It meant to be",
-    questionTags: ["javascript", "R", "python"],
-    userPosted: "Arjun",
-    askedOn: "jan 1",
-    userId: 1,
-    answer: [
-      {
-        answerBody: "Answer",
-        userAnswered: "Nayak",
-        answeredOn: "jan 2",
-        userId: 2,
-      },
-    ],
-  },
-];
+
+
+
+
+
+
+// var questionsList = [
+//   {
+//     _id: "1",
+//     upVotes: 3,
+//     downVotes: 2,
+//     noOfAnswers: 2,
+//     questionTitle: "What is a function?",
+//     questionBody: "It meant to be",
+//     questionTags: ["java", "node js", "react js", "mongo db", "express js"],
+//     userPosted: "Arjun",
+//     userId: 1,
+//     askedOn: "jan 1",
+//     answer: [
+//       {
+//         answerBody: "Answer",
+//         userAnswered: "Nayak",
+//         answeredOn: "jan 2",
+//         userId: 2,
+//       },
+//     ],
+//   },
+//   {
+//     _id: "2",
+//     upVotes: 3,
+//     downVotes: 2,
+//     noOfAnswers: 1,
+//     questionTitle: "What is a function?",
+//     questionBody: "It meant to be",
+//     questionTags: ["javascript", "R", "python"],
+//     userPosted: "Arjun",
+//     askedOn: "jan 1",
+//     userId: 1,
+//     answer: [
+//       {
+//         answerBody: "Answer",
+//         userAnswered: "Nayak",
+//         answeredOn: "jan 2",
+//         userId: 2,
+//       },
+//     ],
+//   },
+//   {
+//     _id: "3",
+//     upVotes: 3,
+//     downVotes: 2,
+//     noOfAnswers: 2,
+//     questionTitle: "What is a function?",
+//     questionBody: "It meant to be",
+//     questionTags: ["javascript", "R", "python"],
+//     userPosted: "Arjun",
+//     askedOn: "jan 1",
+//     userId: 1,
+//     answer: [
+//       {
+//         answerBody: "Answer",
+//         userAnswered: "Nayak",
+//         answeredOn: "jan 2",
+//         userId: 2,
+//       },
+//     ],
+//   },
+// ];
 
 export const QuestionsDetails = () => {
+
+  const questionsList = useSelector(state => state.questionsReducer)
+
   const { id } = useParams();
 
   return (
     <div className="question-details-page">
-      {questionsList === null ? (
+      {questionsList.data === null ? (
         <h1>Loading...</h1>
       ) : (
         <div>
-          {questionsList
+          {questionsList.data
             .filter((question) => question._id === id)
             .map((question) => (
               <div className="" key={question._id}>

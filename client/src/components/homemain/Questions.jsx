@@ -5,7 +5,7 @@ export const Questions = ({ question }) => {
   return (
     <div className="display-question-container">
       <div className="display-votes-ans">
-        <p>{question.votes}</p>
+        <p>{question.upVotes - question.downVotes}</p>
         <p>Votes</p>
       </div>
 
@@ -27,7 +27,7 @@ export const Questions = ({ question }) => {
             ))}
           </div>
           <p className="display-time">
-            Asked  {question.userPosted}
+            Asked {question.askedOn} {question.userPosted}
           </p>
         </div>
       </div>

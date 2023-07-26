@@ -10,7 +10,7 @@ export const HomeMain = () => {
   const navigate = useNavigate();
 
 
-  var questionsList = useSelector(state => state.questionsReducer)
+  const questionsList = useSelector(state => state.questionsReducer)
   console.log(questionsList.data)
 
 
