@@ -10,6 +10,8 @@ export const postAnswer = async(req,res)=>{
         return res.status(404).send('question unavailable...');
     }
 
+    updateNoOfQuestions(_id, noOfAnswers);
+
     try {
         const updatedQuestion = await Questions.findByIdAndUpdate( _id, { $addToSet: {'answer': [{answerBody,userAnswered, userId : req.userId}]}} )
         res.status(200).json(updatedQuestion)
@@ -18,7 +20,7 @@ export const postAnswer = async(req,res)=>{
     }
 }
 
-const updateNoOfAnswers = async( _id, noOfAnswers)=>{
+const updateNoOfQuestions = async( _id, noOfAnswers)=>{
     try {
         await Questions.findByIdAndUpdate( _id, {$set : {'noOfAnswers' : noOfAnswers}})
     } catch (error) {

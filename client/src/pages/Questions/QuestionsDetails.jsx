@@ -1,17 +1,12 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import upvotes from "../../asset/sort-up.svg";
 import downvotes from "../../asset/sort-down.svg";
 import "../Questions/Questions.css";
 import { Avatar } from "../../components/avatar/Avatar";
 import { DisplayAnswer } from "./DisplayAnswer";
-import { useSelector } from "react-redux";
-
-
-
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { postAnswer } from "../../actions/question";
 
 // var questionsList = [
 //   {
@@ -77,10 +72,37 @@ import { useSelector } from "react-redux";
 // ];
 
 export const QuestionsDetails = () => {
-
-  const questionsList = useSelector(state => state.questionsReducer)
+  const questionsList = useSelector((state) => state.questionsReducer);
 
   const { id } = useParams();
+
+  const [answer, setAnswer] = useState("");
+
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const User = useSelector((state) => state.currentUserReducer);
+
+  const handlePostAnswer = (e, answerLength) => {
+    e.preventDefault();
+    if (User === null) {
+      alert("Login or Signup to answer a question!");
+      Navigate("/Auth");
+    } else {
+      if (answer !== "") {
+        alert("Enter an answer before submitting!");
+      } else {
+        dispatch(
+          postAnswer({
+            id,
+            noOfAnswers: answerLength + 1,
+            answerBody: answer,
+            userAnswered: User.result.name,
+          })
+        );
+      }
+    }
+  };
 
   return (
     <div className="question-details-page">
@@ -137,8 +159,18 @@ export const QuestionsDetails = () => {
                 )}
                 <section className="post-ans-container">
                   <h3 className="">Your Answer</h3>
-                  <form>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                  <form
+                    onSubmit={(e) => {
+                      handlePostAnswer(e, question.answer.length);
+                    }}
+                  >
+                    <textarea
+                      name=""
+                      id=""
+                      cols="30"
+                      rows="10"
+                      onChange={(e) => setAnswer(e.target.value)}
+                    ></textarea>
                     <br />
                     <input
                       type="submit"
