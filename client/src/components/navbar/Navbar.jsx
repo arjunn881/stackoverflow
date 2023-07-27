@@ -55,7 +55,7 @@ export const Navbar = () => {
               color="white"
             >
               <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                A
+              {User.result.name.charAt(0).toUpperCase()}
               </Link>
             </Avatar>
 
