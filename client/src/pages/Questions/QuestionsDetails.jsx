@@ -89,7 +89,7 @@ export const QuestionsDetails = () => {
       alert("Login or Signup to answer a question!");
       Navigate("/Auth");
     } else {
-      if (answer !== "") {
+      if (answer === "") {
         alert("Enter an answer before submitting!");
       } else {
         dispatch(
