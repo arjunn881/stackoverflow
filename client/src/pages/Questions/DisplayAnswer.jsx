@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Avatar } from "../../components/avatar/Avatar";
+import moment from 'moment';
 
-export const DisplayAnswer = ({ question }) => {
+
+export const DisplayAnswer = ({ question, handleShare }) => {
   return (
     <div className="">
       {question.answer.map((ans) => (
@@ -10,11 +12,11 @@ export const DisplayAnswer = ({ question }) => {
           <p>{ans.answerBody}</p>
           <div className="question-actions-user">
             <div>
-              <button typr="button">Share</button>
+              <button typr="button" onClick={handleShare}>Share</button>
               <button typr="button">Delete</button>
             </div>
             <div>
-              <p>answer {ans.answeredOn}</p>
+              <p>answer {moment(ans.answeredOn).fromNow()}</p>
               <Link
                 to={`/User/${question.userId}`}
                 className="user-link"
