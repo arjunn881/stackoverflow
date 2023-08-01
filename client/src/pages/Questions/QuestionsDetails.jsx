@@ -10,6 +10,7 @@ import moment from  'moment';
 import { postAnswer } from "../../actions/question";
 
 import copy from 'copy-to-clipboard';
+import { deleteQuestion } from "../../actions/question";
 
 // var questionsList = [
 //   {
@@ -115,7 +116,7 @@ export const QuestionsDetails = () => {
     copy(url+location.pathname)
   }
   const handleDelete =()=>{
-    
+    dispatch(deleteQuestion(id, Navigate))
   }
   return (
     <div className="question-details-page">
@@ -145,7 +146,12 @@ export const QuestionsDetails = () => {
                       <div className="question-actions-user">
                         <div>
                           <button type="button" onClick={handleShare}>Share</button>
-                          <button type="button" onClick={handleDelete}>Delete</button>
+                          {
+                            User?.result?._id === question?.userId  && (
+                              <button type="button" onClick={handleDelete}>Delete</button>
+                            )
+                          }
+                         
                         </div>
                         <div className="">
                           <p>asked {moment(question.askedOn).fromNow()}</p>
