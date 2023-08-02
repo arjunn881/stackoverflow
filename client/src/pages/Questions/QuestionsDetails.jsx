@@ -104,7 +104,7 @@ export const QuestionsDetails = () => {
             noOfAnswers: answerLength + 1,
             answerBody: answer,
             userAnswered: User.result.name,
-            userId:User.result._id
+            userId: User.result._id,
           })
         );
       }
