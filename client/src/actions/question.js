@@ -28,10 +28,10 @@ export const fetchAllQuestions = () => async (dispatch) => {
 
 export const deleteQuestion = (id, navigate) => async(dispatch)=>{
   try {
-    const {data} = api.deleteQuestion(id);
+     api.deleteQuestion(id);
     dispatch(fetchAllQuestions());
     navigate('/');
-    console.log(data)
+    
   } catch (error) {
     console.log(error);
   }
@@ -60,9 +60,9 @@ export const postAnswer = (answerData) => async (dispatch) => {
 
 export const deleteAnswer = (id,answerId, noOfAnswers)=>async(dispatch)=>{
   try {
-    const { data } = await api.deleteAnswer(id,answerId, noOfAnswers)
+    await api.deleteAnswer(id,answerId, noOfAnswers)
     dispatch(fetchAllQuestions())
-    console.log(data)
+    
   } catch (error) {
     console.log(error)
   }

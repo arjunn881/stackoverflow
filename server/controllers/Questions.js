@@ -13,6 +13,9 @@ export const AskQuestion = async (req, res) => {
   }
 };
 
+
+
+
 export const getAllQuestions = async (req, res) => {
   try {
     const questionList = await Questions.find();
