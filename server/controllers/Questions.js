@@ -13,9 +13,6 @@ export const AskQuestion = async (req, res) => {
   }
 };
 
-
-
-
 export const getAllQuestions = async (req, res) => {
   try {
     const questionList = await Questions.find();
@@ -28,15 +25,40 @@ export const getAllQuestions = async (req, res) => {
 export const deleteQuestion = async (req, res) => {
   const { id: _id } = req.params;
 
-  if(!mongoose.Types.ObjectId.isValid(_id)){
-    return res.status(404).send('question unavailable...');
-}
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("question unavailable...");
+  }
 
   try {
-
     await Questions.findByIdAndRemove(_id);
-    res.status(200).json({ message: "Successfully Deleted!!!" })
+    res.status(200).json({ message: "Successfully Deleted!!!" });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+};
+
+export const voteQuestion = async (req, res) => {
+  const { id: _id } = req.params;
+
+  const { value, userId } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).send("question unavailable...");
+  }
+
+  try {
+    const question = await Questions.findById(_id);
+    const upIndex = question.upVote.findIndex((id) => id === String(userId));
+    const downIndex = question.downVote.findIndex(
+      (id) => id === String(userId)
+    );
+
+    if (value === "upVote") {
+      if (downIndex  !== -1) {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
+    }
+  } catch (error) {}
 };
