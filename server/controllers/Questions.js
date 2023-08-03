@@ -65,8 +65,24 @@ export const voteQuestion = async (req, res) => {
       } else {
         question.upVote = question.upVote.filter((id) => id !== String(userId));
       }
+    } else if (value === "downVote") {
+      if (upIndex !== -1) {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
+      }
+
+      if (downIndex === -1) {
+        question.downVote.push(userId);
+      } else {
+        question.downVote = question.downVote.filter(
+          (id) => id !== String(userId)
+        );
+      }
     }
+
+    await Questions.findByIdAndUpdate(_id, question);
+
+    res.status(200).json({ message: "voted succesfully...." });
   } catch (error) {
-    res.status(405).json(error);
+    res.status(405).json({message: error + "id not found"});
   }
 };

@@ -9,7 +9,7 @@ export const Questions = ({ question }) => {
   return (
     <div className="display-question-container">
       <div className="display-votes-ans">
-        <p>{question.upVotes - question.downVotes}</p>
+        <p>{question.upVote.length - question.downVote.length}</p>
         <p>Votes</p>
       </div>
 

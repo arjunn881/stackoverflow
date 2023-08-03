@@ -1,17 +1,40 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
+import decode from 'jwt-decode'
 import { Avatar } from "../avatar/Avatar";
 import "../navbar/Navbar.css";
 import { setCurrentUser } from "../../actions/currentUser";
 export const Navbar = () => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   var User = useSelector((state) => state.currentUserReducer);
 
+
+  const handleLogout = ()=>{
+    dispatch({ type: 'LOGOUT' })
+    navigate('/');
+    dispatch(setCurrentUser(null));
+  }
+
+
   useEffect(() => {
+    const token = User?.token
+    
+    if(token){
+      const decodedToken = decode(token)
+
+      if(decodedToken.exp * 1000 < new Date().getTime() ){
+          handleLogout();
+      }
+    }
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
   }, [dispatch]);
+
+
 
   return (
     <nav>
@@ -59,7 +82,7 @@ export const Navbar = () => {
               </Link>
             </Avatar>
 
-            <button className="nav-item nav-links">Logout</button>
+            <button className="nav-item nav-links" onClick={handleLogout}>Logout</button>
           </>
         )}
       </div>

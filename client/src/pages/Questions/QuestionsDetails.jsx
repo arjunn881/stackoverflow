@@ -144,7 +144,7 @@ export const QuestionsDetails = () => {
                   <div className="question-details-container-2">
                     <div className="question-votes">
                       <img src={upvotes} alt="" width="18"  onClick={handleUpVote}/>
-                      <p>{question.upVotes - question.downVotes}</p>
+                      <p>{question.upVote.length - question.downVote.length}</p>
                       <img src={downvotes} alt="" width="18" onClick={handleDownVote} />
                     </div>
                     <div style={{ width: "100%" }}>
