@@ -54,16 +54,16 @@ export const voteQuestion = async (req, res) => {
     );
 
     if (value === "upVote") {
-      if (downIndex  !== -1) {
+      if (downIndex !== -1) {
         question.downVote = question.downVote.filter(
           (id) => id !== String(userId)
         );
       }
 
-      if(upIndex === -1){
-        question.upVote.push(userId)
-      }else {
-        question.upVote = question.Vote.filter((id)=> id !== String(userId))
+      if (upIndex === -1) {
+        question.upVote.push(userId);
+      } else {
+        question.upVote = question.upVote.filter((id) => id !== String(userId));
       }
     }
   } catch (error) {
