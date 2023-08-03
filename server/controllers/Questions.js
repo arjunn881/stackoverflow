@@ -60,5 +60,7 @@ export const voteQuestion = async (req, res) => {
         );
       }
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(405).json(error);
+  }
 };
