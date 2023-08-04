@@ -58,8 +58,6 @@ const updateNoOfQuestions = async (_id, noOfAnswers) => {
 //   }
 // };
 
-
-
 export const deleteAnswer = async (req, res) => {
   const { id: _id } = req.params;
   const { answerId, noOfAnswers } = req.body;
