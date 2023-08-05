@@ -1,10 +1,24 @@
 import mongoose from "mongoose";
-import users from '../models/auth.js'
+import User from "../models/auth.js";
 
-export const getAllUsers = async(req,res)=>{
-    try {
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
+export const getAllUsers = async (req, res) => {
+  try {
+    const allUser = await User.find();
+    const allUserDetails = [];
+
+    allUser.forEach((users) => {
+      allUserDetails.push({
+        _id: users._id,
+        name: users.name,
+        about: users.about,
+        tags: users.tags,
+        joinedOn: users.joinedOn,
+      });
+    });
+
+    res.status(200).json(allUserDetails);
+
+  } catch (error) {
+    res.status(404).json({message: 'Something went wrong............'})
+  }
+};
