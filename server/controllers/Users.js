@@ -19,6 +19,7 @@ export const getAllUsers = async (req, res) => {
     res.status(200).json(allUserDetails);
 
   } catch (error) {
-    res.status(404).json({message: 'Something went wrong............'})
+    res.status(400).json({message: error.message});
+    
   }
 };
