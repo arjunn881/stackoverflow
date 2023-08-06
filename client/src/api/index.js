@@ -7,6 +7,8 @@ API.interceptors.request.use((req) => {
     req.headers.authorization = `Bearer ${
       JSON.parse(localStorage.getItem("Profile")).token
     }`;
+
+    return req;
   }
 });
 

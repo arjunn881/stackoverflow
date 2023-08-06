@@ -17,7 +17,7 @@ export const AllRoutes = () => {
       <Route path="/AskQuestion" element={<AskQuestion />} />
       <Route path={`/Questions/:id`} element={<DisplayQuestion />} />
       <Route path='/Tags' element={<Tags/>} />
-      <Route path='/User' element={<Users/>} />
+      <Route path='/Users' element={<Users/>} />
     </Routes>
   );
 };

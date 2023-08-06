@@ -18,8 +18,10 @@ export const getAllUsers = async (req, res) => {
 
     res.status(200).json(allUserDetails);
 
+    console.log(allUserDetails)
+
   } catch (error) {
     res.status(400).json({message: error.message});
-    
+
   }
 };
