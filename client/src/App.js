@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAllQuestions());
-    dispatch(fetchAllUsers())
+     dispatch(fetchAllUsers())
   }, [dispatch]);
 
   return (

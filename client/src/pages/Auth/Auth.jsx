@@ -25,7 +25,7 @@ export const Auth = () => {
     }
     if(isSignup){
       if(!name){
-        alert("Enter Name to Continue!!!!");
+        alert("Enter Name to Continue!!");
       }
      dispatch( signup({name, email, password}, navigate));
     } else{

@@ -3,7 +3,7 @@ const questionsReducer = (state = { data: null }, action) => {
     case "POST_QUESTION":
       return { ...state };
 
-      case "POST_ANSWER":
+    case "POST_ANSWER":
       return { ...state };
 
     case "FETCH_ALL_QUESTIONS":

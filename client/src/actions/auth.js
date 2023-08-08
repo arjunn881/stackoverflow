@@ -9,7 +9,7 @@ export const signup = (authData, navigate)=>async(dispatch)=>{
         navigate('/');
 
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
     }
 }
 export const login = (authData, navigate)=>async(dispatch)=>{
