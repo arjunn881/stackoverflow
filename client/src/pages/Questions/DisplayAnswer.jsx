@@ -13,6 +13,7 @@ export const DisplayAnswer = ({ question, handleShare }) => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
+
   const handleDelete = ( answerId, noOfAnswers ) => {
     dispatch(deleteAnswer(id, answerId, noOfAnswers - 1));
   };
@@ -25,12 +26,12 @@ export const DisplayAnswer = ({ question, handleShare }) => {
             <div>
               <button
                 type="button"
-                onClick={() => handleDelete(ans._id, question.noOfAnswers)}
+                onClick={handleShare}
               >
                 Share
               </button>
               {User?.result?._id === ans?.userId && (
-                <button type="button" onClick={handleDelete}>
+                <button type="button" onClick={() => handleDelete(ans._id, question.noOfAnswers)}>
                   Delete
                 </button>
               )}
