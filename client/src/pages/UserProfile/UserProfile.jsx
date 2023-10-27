@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Avatar } from "../../components/avatar/Avatar";
 import { FaBirthdayCake, FaPen } from "react-icons/fa";
 import moment from "moment";
-import './UserProfile.css';
+import "./UserProfile.css";
 
 export const UserProfile = () => {
   const { id } = useParams();
@@ -14,8 +14,6 @@ export const UserProfile = () => {
   const currentProfile = users.filter((user) => user._id === id)[0];
   const currentUser = useSelector((state) => state.currentUserReducer);
 
-
-  
   return (
     <div className="home-container-1">
       <Leftbar />
@@ -43,20 +41,18 @@ export const UserProfile = () => {
               </div>
             </div>
 
-            {
-              currentUser?.result._id === id && (
-                <button type="button" className="edit-profile-btn" onClick={()=> setSwitch(true)}>Edit Profile <FaPen/></button>
-              )
-            }
+            {currentUser?.result._id === id && (
+              <button
+                type="button"
+                className="edit-profile-btn"
+                onClick={() => setSwitch(true)}
+              >
+                Edit Profile <FaPen />
+              </button>
+            )}
           </div>
 
-{/* 
-              <>
-              {
-                switch ? <EditProfileForm/> : <ProfileBio/>
-              }
-              </> */}
-
+          <>{Switch ? "EditProfileForm" : "ProfileBio"}</>
         </section>
       </div>
     </div>

@@ -118,17 +118,13 @@ export const QuestionsDetails = () => {
     dispatch(deleteQuestion(id, Navigate));
   };
 
+  const handleUpVote = () => {
+    dispatch(voteQuestion(id, "upVote", User.result._id));
+  };
 
-
-  const handleUpVote =()=>{
-    dispatch(voteQuestion(id, 'upVote', User.result._id))
-
-  }
-
-  const handleDownVote=()=>{
-    dispatch(voteQuestion(id, 'downVote', User.result._id))
-
-  }
+  const handleDownVote = () => {
+    dispatch(voteQuestion(id, "downVote", User.result._id));
+  };
   return (
     <div className="question-details-page">
       {questionsList.data === null ? (
@@ -143,9 +139,19 @@ export const QuestionsDetails = () => {
                   <h1>{question.questionTitle}</h1>
                   <div className="question-details-container-2">
                     <div className="question-votes">
-                      <img src={upvotes} alt="" width="18"  onClick={handleUpVote}/>
+                      <img
+                        src={upvotes}
+                        alt=""
+                        width="18"
+                        onClick={handleUpVote}
+                      />
                       <p>{question.upVote.length - question.downVote.length}</p>
-                      <img src={downvotes} alt="" width="18" onClick={handleDownVote} />
+                      <img
+                        src={downvotes}
+                        alt=""
+                        width="18"
+                        onClick={handleDownVote}
+                      />
                     </div>
                     <div style={{ width: "100%" }}>
                       <p className="question-body">{question.questionBody}</p>
@@ -172,9 +178,15 @@ export const QuestionsDetails = () => {
                             className="user-link"
                             style={{ color: "#0086d8" }}
                           >
-                            <Avatar backgroundColor="orange" px="8px" py="5px">
-                              {question.userPosted.charAt(0).toUpperCase()}{" "}
-                            </Avatar>
+                            <Link to={`/Users/${User?.result?._id}`}>
+                              <Avatar
+                                backgroundColor="orange"
+                                px="8px"
+                                py="5px"
+                              >
+                                {question.userPosted.charAt(0).toUpperCase()}{" "}
+                              </Avatar>
+                            </Link>
                             <div className="">{question.userPosted}</div>
                           </Link>
                         </div>

@@ -43,9 +43,12 @@ export const DisplayAnswer = ({ question, handleShare }) => {
                 className="user-link"
                 style={{ color: "#0086d8" }}
               >
+
+                <Link to={`/Users/${User?.result?._id}`}>
                 <Avatar backgroundColor="green" px="8px" py="5px">
                   {ans.userAnswered.charAt(0).toUpperCase()}
                 </Avatar>
+                </Link>
                 <div className="">{ans.userAnswered}</div>
               </Link>
             </div>

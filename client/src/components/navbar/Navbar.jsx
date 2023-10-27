@@ -79,6 +79,8 @@ export const Navbar = () => {
               </Link>
             </Avatar>
 
+
+            
             <button className="nav-item nav-links" onClick={handleLogout}>
               Logout
             </button>
